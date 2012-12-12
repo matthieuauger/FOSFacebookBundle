@@ -9,8 +9,16 @@
         <service id="fos_facebook.api" class="%fos_facebook.api.class%">
             <file>%fos_facebook.file%</file>
             <argument type="collection">
-                <argument key="appId">%fos_facebook.app_id%</argument>
-                <argument key="secret">%fos_facebook.secret%</argument>
+                <argument key="appId" type="service">
+                    <service class="stdClass" factory-service="opensky.runtime_config" factory-method="get">
+                        <argument>app_id</argument>
+                    </service>
+                </argument>
+                <argument key="secret" type="service">
+                    <service class="stdClass" factory-service="opensky.runtime_config" factory-method="get">
+                        <argument>facebook_secret</argument>
+                    </service>
+                </argument>
                 <argument key="cookie">%fos_facebook.cookie%</argument>
                 <argument key="domain">%fos_facebook.domain%</argument>
             </argument>
